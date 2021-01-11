@@ -1,0 +1,2 @@
+# Package-Delivery-System-
+This project is all about Package Delivery System wherein the project function is the CRUD operation of the SQL  (Create, Read, Update, Delete) . The project also have to function for the customer and the employee. The employee have the function of the CRUD while the customer is only able to search in specific detail given only. The system is created in SQL and C# program
