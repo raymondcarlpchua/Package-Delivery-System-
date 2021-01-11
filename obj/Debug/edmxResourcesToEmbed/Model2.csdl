@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DELIVERYDBModel1" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DELIVERYDBEntities1" p1:LazyLoadingEnabled="true">
+    <FunctionImport Name="GetDeliveryMode" ReturnType="Collection(DELIVERYDBModel1.GetDeliveryMode_Result)" />
+    <FunctionImport Name="GetDeliveryStatus" ReturnType="Collection(DELIVERYDBModel1.GetDeliveryStatus_Result)" />
+  </EntityContainer>
+  <ComplexType Name="GetDeliveryMode_Result">
+    <Property Type="Int32" Name="iddeliver" Nullable="false" />
+    <Property Type="String" Name="deliver" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GetDeliveryStatus_Result">
+    <Property Type="Int32" Name="iddelmode" Nullable="false" />
+    <Property Type="String" Name="delmode" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>

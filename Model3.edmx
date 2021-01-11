@@ -1,0 +1,604 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DELIVERYDBModel2.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DELIVERYDBModel2StoreContainer">
+          <EntitySet Name="DeliveryMode" EntityType="DELIVERYDBModel2.Store.DeliveryMode" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DeliveryStat" EntityType="DELIVERYDBModel2.Store.DeliveryStat" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PackageInformation" EntityType="DELIVERYDBModel2.Store.PackageInformation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="DELIVERYDBModel2.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_PackageInformation_DeliveryMode" Association="DELIVERYDBModel2.Store.FK_PackageInformation_DeliveryMode">
+            <End Role="DeliveryMode" EntitySet="DeliveryMode" />
+            <End Role="PackageInformation" EntitySet="PackageInformation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageInformation_DeliveryStat" Association="DELIVERYDBModel2.Store.FK_PackageInformation_DeliveryStat">
+            <End Role="DeliveryStat" EntitySet="DeliveryStat" />
+            <End Role="PackageInformation" EntitySet="PackageInformation" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="DeliveryMode">
+          <Key>
+            <PropertyRef Name="iddelmode" />
+          </Key>
+          <Property Name="iddelmode" Type="int" Nullable="false" />
+          <Property Name="delmode" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DeliveryStat">
+          <Key>
+            <PropertyRef Name="iddeliver" />
+          </Key>
+          <Property Name="iddeliver" Type="int" Nullable="false" />
+          <Property Name="deliver" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PackageInformation">
+          <Key>
+            <PropertyRef Name="packid" />
+          </Key>
+          <Property Name="packid" Type="int" Nullable="false" />
+          <Property Name="sname" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="saddress" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="scontact" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="rname" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="raddress" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="rcontact" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="iddelmode" Type="int" Nullable="false" />
+          <Property Name="iddeliver" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_PackageInformation_DeliveryMode">
+          <End Role="DeliveryMode" Type="DELIVERYDBModel2.Store.DeliveryMode" Multiplicity="1" />
+          <End Role="PackageInformation" Type="DELIVERYDBModel2.Store.PackageInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryMode">
+              <PropertyRef Name="iddelmode" />
+            </Principal>
+            <Dependent Role="PackageInformation">
+              <PropertyRef Name="iddeliver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageInformation_DeliveryStat">
+          <End Role="DeliveryStat" Type="DELIVERYDBModel2.Store.DeliveryStat" Multiplicity="1" />
+          <End Role="PackageInformation" Type="DELIVERYDBModel2.Store.PackageInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryStat">
+              <PropertyRef Name="iddeliver" />
+            </Principal>
+            <Dependent Role="PackageInformation">
+              <PropertyRef Name="iddeliver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="DeletePackageInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="packid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetDeliveryMode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetDeliveryStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="InsertPackageInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="packid" Type="int" Mode="In" />
+          <Parameter Name="sname" Type="varchar" Mode="In" />
+          <Parameter Name="saddress" Type="varchar" Mode="In" />
+          <Parameter Name="scontact" Type="varchar" Mode="In" />
+          <Parameter Name="rname" Type="varchar" Mode="In" />
+          <Parameter Name="raddress" Type="varchar" Mode="In" />
+          <Parameter Name="rcontact" Type="varchar" Mode="In" />
+          <Parameter Name="iddelmode" Type="int" Mode="In" />
+          <Parameter Name="iddeliver" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SearchAllPackageInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SearchPackageInformationByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="packid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SearchPackageInformationByRName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SearchPackageInformationBySName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SearchPackageInformationBySName2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SearchPackageInformationBySName3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UpdatePackageInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="packid" Type="int" Mode="In" />
+          <Parameter Name="sname" Type="varchar" Mode="In" />
+          <Parameter Name="saddress" Type="varchar" Mode="In" />
+          <Parameter Name="scontact" Type="varchar" Mode="In" />
+          <Parameter Name="rname" Type="varchar" Mode="In" />
+          <Parameter Name="raddress" Type="varchar" Mode="In" />
+          <Parameter Name="rcontact" Type="varchar" Mode="In" />
+          <Parameter Name="iddelmode" Type="int" Mode="In" />
+          <Parameter Name="iddeliver" Type="int" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DELIVERYDBModel2" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DELIVERYDBEntities2" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="DeliveryModes" EntityType="DELIVERYDBModel2.DeliveryMode" />
+          <EntitySet Name="DeliveryStats" EntityType="DELIVERYDBModel2.DeliveryStat" />
+          <EntitySet Name="PackageInformations" EntityType="DELIVERYDBModel2.PackageInformation" />
+          <EntitySet Name="sysdiagrams" EntityType="DELIVERYDBModel2.sysdiagram" />
+          <AssociationSet Name="FK_PackageInformation_DeliveryMode" Association="DELIVERYDBModel2.FK_PackageInformation_DeliveryMode">
+            <End Role="DeliveryMode" EntitySet="DeliveryModes" />
+            <End Role="PackageInformation" EntitySet="PackageInformations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PackageInformation_DeliveryStat" Association="DELIVERYDBModel2.FK_PackageInformation_DeliveryStat">
+            <End Role="DeliveryStat" EntitySet="DeliveryStats" />
+            <End Role="PackageInformation" EntitySet="PackageInformations" />
+          </AssociationSet>
+          <FunctionImport Name="DeletePackageInformation">
+            <Parameter Name="packid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetDeliveryMode" ReturnType="Collection(DELIVERYDBModel2.GetDeliveryMode_Result)" />
+          <FunctionImport Name="GetDeliveryStatus" ReturnType="Collection(DELIVERYDBModel2.GetDeliveryStatus_Result)" />
+          <FunctionImport Name="InsertPackageInformation">
+            <Parameter Name="packid" Mode="In" Type="Int32" />
+            <Parameter Name="sname" Mode="In" Type="String" />
+            <Parameter Name="saddress" Mode="In" Type="String" />
+            <Parameter Name="scontact" Mode="In" Type="String" />
+            <Parameter Name="rname" Mode="In" Type="String" />
+            <Parameter Name="raddress" Mode="In" Type="String" />
+            <Parameter Name="rcontact" Mode="In" Type="String" />
+            <Parameter Name="iddelmode" Mode="In" Type="Int32" />
+            <Parameter Name="iddeliver" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SearchAllPackageInformation" ReturnType="Collection(DELIVERYDBModel2.SearchAllPackageInformation_Result)" />
+          <FunctionImport Name="SearchPackageInformationByID" ReturnType="Collection(DELIVERYDBModel2.SearchPackageInformationByID_Result)">
+            <Parameter Name="packid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SearchPackageInformationByRName" ReturnType="Collection(DELIVERYDBModel2.SearchPackageInformationByRName_Result)">
+            <Parameter Name="rname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchPackageInformationBySName" ReturnType="Collection(DELIVERYDBModel2.SearchPackageInformationBySName_Result)">
+            <Parameter Name="sname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchPackageInformationBySName2" ReturnType="Collection(DELIVERYDBModel2.SearchPackageInformationBySName2_Result)">
+            <Parameter Name="sname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchPackageInformationBySName3" ReturnType="Collection(DELIVERYDBModel2.SearchPackageInformationBySName3_Result)">
+            <Parameter Name="sname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DELIVERYDBModel2.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DELIVERYDBModel2.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="UpdatePackageInformation">
+            <Parameter Name="packid" Mode="In" Type="Int32" />
+            <Parameter Name="sname" Mode="In" Type="String" />
+            <Parameter Name="saddress" Mode="In" Type="String" />
+            <Parameter Name="scontact" Mode="In" Type="String" />
+            <Parameter Name="rname" Mode="In" Type="String" />
+            <Parameter Name="raddress" Mode="In" Type="String" />
+            <Parameter Name="rcontact" Mode="In" Type="String" />
+            <Parameter Name="iddelmode" Mode="In" Type="Int32" />
+            <Parameter Name="iddeliver" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="DeliveryMode">
+          <Key>
+            <PropertyRef Name="iddelmode" />
+          </Key>
+          <Property Name="iddelmode" Type="Int32" Nullable="false" />
+          <Property Name="delmode" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="PackageInformations" Relationship="DELIVERYDBModel2.FK_PackageInformation_DeliveryMode" FromRole="DeliveryMode" ToRole="PackageInformation" />
+        </EntityType>
+        <EntityType Name="DeliveryStat">
+          <Key>
+            <PropertyRef Name="iddeliver" />
+          </Key>
+          <Property Name="iddeliver" Type="Int32" Nullable="false" />
+          <Property Name="deliver" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="PackageInformations" Relationship="DELIVERYDBModel2.FK_PackageInformation_DeliveryStat" FromRole="DeliveryStat" ToRole="PackageInformation" />
+        </EntityType>
+        <EntityType Name="PackageInformation">
+          <Key>
+            <PropertyRef Name="packid" />
+          </Key>
+          <Property Name="packid" Type="Int32" Nullable="false" />
+          <Property Name="sname" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="saddress" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="scontact" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="rname" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="raddress" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="rcontact" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="iddelmode" Type="Int32" Nullable="false" />
+          <Property Name="iddeliver" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DeliveryMode" Relationship="DELIVERYDBModel2.FK_PackageInformation_DeliveryMode" FromRole="PackageInformation" ToRole="DeliveryMode" />
+          <NavigationProperty Name="DeliveryStat" Relationship="DELIVERYDBModel2.FK_PackageInformation_DeliveryStat" FromRole="PackageInformation" ToRole="DeliveryStat" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_PackageInformation_DeliveryMode">
+          <End Role="DeliveryMode" Type="DELIVERYDBModel2.DeliveryMode" Multiplicity="1" />
+          <End Role="PackageInformation" Type="DELIVERYDBModel2.PackageInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryMode">
+              <PropertyRef Name="iddelmode" />
+            </Principal>
+            <Dependent Role="PackageInformation">
+              <PropertyRef Name="iddeliver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PackageInformation_DeliveryStat">
+          <End Role="DeliveryStat" Type="DELIVERYDBModel2.DeliveryStat" Multiplicity="1" />
+          <End Role="PackageInformation" Type="DELIVERYDBModel2.PackageInformation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryStat">
+              <PropertyRef Name="iddeliver" />
+            </Principal>
+            <Dependent Role="PackageInformation">
+              <PropertyRef Name="iddeliver" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetDeliveryMode_Result">
+          <Property Type="Int32" Name="iddeliver" Nullable="false" />
+          <Property Type="String" Name="deliver" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetDeliveryStatus_Result">
+          <Property Type="Int32" Name="iddelmode" Nullable="false" />
+          <Property Type="String" Name="delmode" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchAllPackageInformation_Result">
+          <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+          <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchPackageInformationByID_Result">
+          <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+          <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchPackageInformationByRName_Result">
+          <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+          <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchPackageInformationBySName_Result">
+          <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+          <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchPackageInformationBySName2_Result">
+          <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+          <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchPackageInformationBySName3_Result">
+          <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+          <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DELIVERYDBModel2StoreContainer" CdmEntityContainer="DELIVERYDBEntities2">
+          <EntitySetMapping Name="DeliveryModes">
+            <EntityTypeMapping TypeName="DELIVERYDBModel2.DeliveryMode">
+              <MappingFragment StoreEntitySet="DeliveryMode">
+                <ScalarProperty Name="iddelmode" ColumnName="iddelmode" />
+                <ScalarProperty Name="delmode" ColumnName="delmode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryStats">
+            <EntityTypeMapping TypeName="DELIVERYDBModel2.DeliveryStat">
+              <MappingFragment StoreEntitySet="DeliveryStat">
+                <ScalarProperty Name="iddeliver" ColumnName="iddeliver" />
+                <ScalarProperty Name="deliver" ColumnName="deliver" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PackageInformations">
+            <EntityTypeMapping TypeName="DELIVERYDBModel2.PackageInformation">
+              <MappingFragment StoreEntitySet="PackageInformation">
+                <ScalarProperty Name="packid" ColumnName="packid" />
+                <ScalarProperty Name="sname" ColumnName="sname" />
+                <ScalarProperty Name="saddress" ColumnName="saddress" />
+                <ScalarProperty Name="scontact" ColumnName="scontact" />
+                <ScalarProperty Name="rname" ColumnName="rname" />
+                <ScalarProperty Name="raddress" ColumnName="raddress" />
+                <ScalarProperty Name="rcontact" ColumnName="rcontact" />
+                <ScalarProperty Name="iddelmode" ColumnName="iddelmode" />
+                <ScalarProperty Name="iddeliver" ColumnName="iddeliver" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DELIVERYDBModel2.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DeletePackageInformation" FunctionName="DELIVERYDBModel2.Store.DeletePackageInformation" />
+          <FunctionImportMapping FunctionImportName="GetDeliveryMode" FunctionName="DELIVERYDBModel2.Store.GetDeliveryMode">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DELIVERYDBModel2.GetDeliveryMode_Result">
+                <ScalarProperty Name="iddeliver" ColumnName="iddeliver" />
+                <ScalarProperty Name="deliver" ColumnName="deliver" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDeliveryStatus" FunctionName="DELIVERYDBModel2.Store.GetDeliveryStatus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DELIVERYDBModel2.GetDeliveryStatus_Result">
+                <ScalarProperty Name="iddelmode" ColumnName="iddelmode" />
+                <ScalarProperty Name="delmode" ColumnName="delmode" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertPackageInformation" FunctionName="DELIVERYDBModel2.Store.InsertPackageInformation" />
+          <FunctionImportMapping FunctionImportName="SearchAllPackageInformation" FunctionName="DELIVERYDBModel2.Store.SearchAllPackageInformation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DELIVERYDBModel2.SearchAllPackageInformation_Result">
+                <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+                <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+                <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+                <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+                <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+                <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchPackageInformationByID" FunctionName="DELIVERYDBModel2.Store.SearchPackageInformationByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DELIVERYDBModel2.SearchPackageInformationByID_Result">
+                <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+                <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+                <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+                <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+                <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+                <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchPackageInformationByRName" FunctionName="DELIVERYDBModel2.Store.SearchPackageInformationByRName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DELIVERYDBModel2.SearchPackageInformationByRName_Result">
+                <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+                <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+                <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+                <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+                <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+                <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchPackageInformationBySName" FunctionName="DELIVERYDBModel2.Store.SearchPackageInformationBySName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DELIVERYDBModel2.SearchPackageInformationBySName_Result">
+                <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+                <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+                <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+                <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+                <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+                <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchPackageInformationBySName2" FunctionName="DELIVERYDBModel2.Store.SearchPackageInformationBySName2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DELIVERYDBModel2.SearchPackageInformationBySName2_Result">
+                <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+                <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+                <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+                <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+                <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+                <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchPackageInformationBySName3" FunctionName="DELIVERYDBModel2.Store.SearchPackageInformationBySName3">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DELIVERYDBModel2.SearchPackageInformationBySName3_Result">
+                <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+                <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+                <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+                <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+                <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+                <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DELIVERYDBModel2.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DELIVERYDBModel2.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DELIVERYDBModel2.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DELIVERYDBModel2.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DELIVERYDBModel2.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DELIVERYDBModel2.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DELIVERYDBModel2.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DELIVERYDBModel2.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DELIVERYDBModel2.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="UpdatePackageInformation" FunctionName="DELIVERYDBModel2.Store.UpdatePackageInformation" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

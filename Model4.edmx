@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DELIVERYDBModel3.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="DELIVERYDBModel3StoreContainer" />
+        <Function Name="DeletePackageInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="packid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertPackageInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="packid" Type="int" Mode="In" />
+          <Parameter Name="sname" Type="varchar" Mode="In" />
+          <Parameter Name="saddress" Type="varchar" Mode="In" />
+          <Parameter Name="scontact" Type="varchar" Mode="In" />
+          <Parameter Name="rname" Type="varchar" Mode="In" />
+          <Parameter Name="raddress" Type="varchar" Mode="In" />
+          <Parameter Name="rcontact" Type="varchar" Mode="In" />
+          <Parameter Name="iddelmode" Type="int" Mode="In" />
+          <Parameter Name="iddeliver" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SearchAllPackageInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SearchPackageInformationByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="packid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SearchPackageInformationByRName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SearchPackageInformationBySName2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdatePackageInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="packid" Type="int" Mode="In" />
+          <Parameter Name="sname" Type="varchar" Mode="In" />
+          <Parameter Name="saddress" Type="varchar" Mode="In" />
+          <Parameter Name="scontact" Type="varchar" Mode="In" />
+          <Parameter Name="rname" Type="varchar" Mode="In" />
+          <Parameter Name="raddress" Type="varchar" Mode="In" />
+          <Parameter Name="rcontact" Type="varchar" Mode="In" />
+          <Parameter Name="iddelmode" Type="int" Mode="In" />
+          <Parameter Name="iddeliver" Type="int" Mode="In" />
+        </Function>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DELIVERYDBModel3" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DELIVERYDBEntities3" p1:LazyLoadingEnabled="true" >
+          <FunctionImport Name="DeletePackageInformation">
+            <Parameter Name="packid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertPackageInformation">
+            <Parameter Name="packid" Mode="In" Type="Int32" />
+            <Parameter Name="sname" Mode="In" Type="String" />
+            <Parameter Name="saddress" Mode="In" Type="String" />
+            <Parameter Name="scontact" Mode="In" Type="String" />
+            <Parameter Name="rname" Mode="In" Type="String" />
+            <Parameter Name="raddress" Mode="In" Type="String" />
+            <Parameter Name="rcontact" Mode="In" Type="String" />
+            <Parameter Name="iddelmode" Mode="In" Type="Int32" />
+            <Parameter Name="iddeliver" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SearchAllPackageInformation" ReturnType="Collection(DELIVERYDBModel3.SearchAllPackageInformation_Result)" />
+          <FunctionImport Name="SearchPackageInformationByID" ReturnType="Collection(DELIVERYDBModel3.SearchPackageInformationByID_Result)">
+            <Parameter Name="packid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SearchPackageInformationByRName" ReturnType="Collection(DELIVERYDBModel3.SearchPackageInformationByRName_Result)">
+            <Parameter Name="rname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SearchPackageInformationBySName2" ReturnType="Collection(DELIVERYDBModel3.SearchPackageInformationBySName2_Result)">
+            <Parameter Name="sname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdatePackageInformation">
+            <Parameter Name="packid" Mode="In" Type="Int32" />
+            <Parameter Name="sname" Mode="In" Type="String" />
+            <Parameter Name="saddress" Mode="In" Type="String" />
+            <Parameter Name="scontact" Mode="In" Type="String" />
+            <Parameter Name="rname" Mode="In" Type="String" />
+            <Parameter Name="raddress" Mode="In" Type="String" />
+            <Parameter Name="rcontact" Mode="In" Type="String" />
+            <Parameter Name="iddelmode" Mode="In" Type="Int32" />
+            <Parameter Name="iddeliver" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SearchAllPackageInformation_Result">
+          <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+          <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchPackageInformationByID_Result">
+          <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+          <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchPackageInformationByRName_Result">
+          <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+          <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SearchPackageInformationBySName2_Result">
+          <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+          <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DELIVERYDBModel3StoreContainer" CdmEntityContainer="DELIVERYDBEntities3" >
+          <FunctionImportMapping FunctionImportName="DeletePackageInformation" FunctionName="DELIVERYDBModel3.Store.DeletePackageInformation" />
+          <FunctionImportMapping FunctionImportName="InsertPackageInformation" FunctionName="DELIVERYDBModel3.Store.InsertPackageInformation" />
+          <FunctionImportMapping FunctionImportName="SearchAllPackageInformation" FunctionName="DELIVERYDBModel3.Store.SearchAllPackageInformation">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DELIVERYDBModel3.SearchAllPackageInformation_Result">
+                <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+                <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+                <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+                <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+                <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+                <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchPackageInformationByID" FunctionName="DELIVERYDBModel3.Store.SearchPackageInformationByID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DELIVERYDBModel3.SearchPackageInformationByID_Result">
+                <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+                <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+                <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+                <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+                <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+                <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchPackageInformationByRName" FunctionName="DELIVERYDBModel3.Store.SearchPackageInformationByRName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DELIVERYDBModel3.SearchPackageInformationByRName_Result">
+                <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+                <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+                <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+                <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+                <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+                <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SearchPackageInformationBySName2" FunctionName="DELIVERYDBModel3.Store.SearchPackageInformationBySName2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DELIVERYDBModel3.SearchPackageInformationBySName2_Result">
+                <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+                <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+                <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+                <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+                <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+                <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+                <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdatePackageInformation" FunctionName="DELIVERYDBModel3.Store.UpdatePackageInformation" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

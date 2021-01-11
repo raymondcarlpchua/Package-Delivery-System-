@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DELIVERYDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DELIVERYDBEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="DeliveryModes" EntityType="DELIVERYDBModel.DeliveryMode" />
+    <EntitySet Name="DeliveryStats" EntityType="DELIVERYDBModel.DeliveryStat" />
+    <EntitySet Name="PackageInformations" EntityType="DELIVERYDBModel.PackageInformation" />
+    <EntitySet Name="sysdiagrams" EntityType="DELIVERYDBModel.sysdiagram" />
+    <AssociationSet Name="FK_PackageInformation_DeliveryMode" Association="DELIVERYDBModel.FK_PackageInformation_DeliveryMode">
+      <End Role="DeliveryMode" EntitySet="DeliveryModes" />
+      <End Role="PackageInformation" EntitySet="PackageInformations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackageInformation_DeliveryStat" Association="DELIVERYDBModel.FK_PackageInformation_DeliveryStat">
+      <End Role="DeliveryStat" EntitySet="DeliveryStats" />
+      <End Role="PackageInformation" EntitySet="PackageInformations" />
+    </AssociationSet>
+    <FunctionImport Name="DeletePackageInformation">
+      <Parameter Name="packid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertPackageInformation">
+      <Parameter Name="packid" Mode="In" Type="Int32" />
+      <Parameter Name="sname" Mode="In" Type="String" />
+      <Parameter Name="saddress" Mode="In" Type="String" />
+      <Parameter Name="scontact" Mode="In" Type="String" />
+      <Parameter Name="rname" Mode="In" Type="String" />
+      <Parameter Name="raddress" Mode="In" Type="String" />
+      <Parameter Name="rcontact" Mode="In" Type="String" />
+      <Parameter Name="iddelmode" Mode="In" Type="Int32" />
+      <Parameter Name="iddeliver" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SearchAllPackageInformation" ReturnType="Collection(DELIVERYDBModel.SearchAllPackageInformation_Result)" />
+    <FunctionImport Name="SearchPackageInformationByID" ReturnType="Collection(DELIVERYDBModel.SearchPackageInformationByID_Result)">
+      <Parameter Name="packid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SearchPackageInformationByRName" ReturnType="Collection(DELIVERYDBModel.SearchPackageInformationByRName_Result)">
+      <Parameter Name="rname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SearchPackageInformationBySName" ReturnType="Collection(DELIVERYDBModel.SearchPackageInformationBySName_Result)">
+      <Parameter Name="sname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SearchPackageInformationBySName2" ReturnType="Collection(DELIVERYDBModel.SearchPackageInformationBySName2_Result)">
+      <Parameter Name="sname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SearchPackageInformationBySName3" ReturnType="Collection(DELIVERYDBModel.SearchPackageInformationBySName3_Result)">
+      <Parameter Name="sname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DELIVERYDBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DELIVERYDBModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="UpdatePackageInformation">
+      <Parameter Name="packid" Mode="In" Type="Int32" />
+      <Parameter Name="sname" Mode="In" Type="String" />
+      <Parameter Name="saddress" Mode="In" Type="String" />
+      <Parameter Name="scontact" Mode="In" Type="String" />
+      <Parameter Name="rname" Mode="In" Type="String" />
+      <Parameter Name="raddress" Mode="In" Type="String" />
+      <Parameter Name="rcontact" Mode="In" Type="String" />
+      <Parameter Name="iddelmode" Mode="In" Type="Int32" />
+      <Parameter Name="iddeliver" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <EntityType Name="DeliveryMode">
+    <Key>
+      <PropertyRef Name="iddelmode" />
+    </Key>
+    <Property Name="iddelmode" Type="Int32" Nullable="false" />
+    <Property Name="delmode" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="PackageInformations" Relationship="DELIVERYDBModel.FK_PackageInformation_DeliveryMode" FromRole="DeliveryMode" ToRole="PackageInformation" />
+  </EntityType>
+  <EntityType Name="DeliveryStat">
+    <Key>
+      <PropertyRef Name="iddeliver" />
+    </Key>
+    <Property Name="iddeliver" Type="Int32" Nullable="false" />
+    <Property Name="deliver" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="PackageInformations" Relationship="DELIVERYDBModel.FK_PackageInformation_DeliveryStat" FromRole="DeliveryStat" ToRole="PackageInformation" />
+  </EntityType>
+  <EntityType Name="PackageInformation">
+    <Key>
+      <PropertyRef Name="packid" />
+    </Key>
+    <Property Name="packid" Type="Int32" Nullable="false" />
+    <Property Name="sname" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="saddress" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="scontact" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="rname" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="raddress" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="rcontact" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="iddelmode" Type="Int32" Nullable="false" />
+    <Property Name="iddeliver" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DeliveryMode" Relationship="DELIVERYDBModel.FK_PackageInformation_DeliveryMode" FromRole="PackageInformation" ToRole="DeliveryMode" />
+    <NavigationProperty Name="DeliveryStat" Relationship="DELIVERYDBModel.FK_PackageInformation_DeliveryStat" FromRole="PackageInformation" ToRole="DeliveryStat" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_PackageInformation_DeliveryMode">
+    <End Role="DeliveryMode" Type="DELIVERYDBModel.DeliveryMode" Multiplicity="1" />
+    <End Role="PackageInformation" Type="DELIVERYDBModel.PackageInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeliveryMode">
+        <PropertyRef Name="iddelmode" />
+      </Principal>
+      <Dependent Role="PackageInformation">
+        <PropertyRef Name="iddeliver" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackageInformation_DeliveryStat">
+    <End Role="DeliveryStat" Type="DELIVERYDBModel.DeliveryStat" Multiplicity="1" />
+    <End Role="PackageInformation" Type="DELIVERYDBModel.PackageInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeliveryStat">
+        <PropertyRef Name="iddeliver" />
+      </Principal>
+      <Dependent Role="PackageInformation">
+        <PropertyRef Name="iddeliver" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="SearchAllPackageInformation_Result">
+    <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+    <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SearchPackageInformationByID_Result">
+    <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+    <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SearchPackageInformationByRName_Result">
+    <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+    <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SearchPackageInformationBySName_Result">
+    <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+    <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SearchPackageInformationBySName2_Result">
+    <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+    <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SearchPackageInformationBySName3_Result">
+    <Property Type="Int32" Name="PackageInformation" Nullable="false" />
+    <Property Type="String" Name="SenderName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="SenderAddress" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="SenderContactNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ReceiverAddress" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ReceiverContactNo" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="DeliveryStatus" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="ModeOfDelivery" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

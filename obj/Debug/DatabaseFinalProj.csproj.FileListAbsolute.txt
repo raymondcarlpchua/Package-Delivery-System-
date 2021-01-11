@@ -1,0 +1,15 @@
+c:\users\raymond carl chua\documents\visual studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\bin\Debug\DatabaseFinalProj.exe.config
+c:\users\raymond carl chua\documents\visual studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\obj\Debug\DatabaseFinalProj.Properties.Resources.resources
+c:\users\raymond carl chua\documents\visual studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\obj\Debug\DatabaseFinalProj.csproj.GenerateResource.Cache
+c:\users\raymond carl chua\documents\visual studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\bin\Debug\DatabaseFinalProj.exe
+c:\users\raymond carl chua\documents\visual studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\bin\Debug\DatabaseFinalProj.pdb
+c:\users\raymond carl chua\documents\visual studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\obj\Debug\DatabaseFinalProj.FormData.resources
+c:\users\raymond carl chua\documents\visual studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\obj\Debug\DatabaseFinalProj.exe
+c:\users\raymond carl chua\documents\visual studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\obj\Debug\DatabaseFinalProj.pdb
+c:\users\raymond carl chua\documents\visual studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\obj\Debug\DatabaseFinalProj.csprojResolveAssemblyReference.cache
+c:\users\raymond carl chua\documents\visual studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\obj\Debug\DatabaseFinalProj.AddPackageInformation.resources
+c:\users\raymond carl chua\documents\visual studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\obj\Debug\DatabaseFinalProj.FormMenu.resources
+c:\users\raymond carl chua\documents\visual studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\obj\Debug\DatabaseFinalProj.UpdatePackageInformation.resources
+C:\Users\Raymond Carl Chua\documents\visual studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\bin\Debug\EntityFramework.dll
+C:\Users\Raymond Carl Chua\documents\visual studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\bin\Debug\EntityFramework.xml
+C:\Users\Raymond Carl Chua\Documents\Visual Studio 2012\Projects\DatabaseFinalProj\DatabaseFinalProj\obj\Debug\DatabaseFinalProj.FormLog.resources

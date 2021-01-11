@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DELIVERYDBModel1StoreContainer" CdmEntityContainer="DELIVERYDBEntities1">
+    <FunctionImportMapping FunctionImportName="GetDeliveryMode" FunctionName="DELIVERYDBModel1.Store.GetDeliveryMode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DELIVERYDBModel1.GetDeliveryMode_Result">
+          <ScalarProperty Name="iddeliver" ColumnName="iddeliver" />
+          <ScalarProperty Name="deliver" ColumnName="deliver" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDeliveryStatus" FunctionName="DELIVERYDBModel1.Store.GetDeliveryStatus">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DELIVERYDBModel1.GetDeliveryStatus_Result">
+          <ScalarProperty Name="iddelmode" ColumnName="iddelmode" />
+          <ScalarProperty Name="delmode" ColumnName="delmode" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

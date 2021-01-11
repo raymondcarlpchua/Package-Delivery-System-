@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DELIVERYDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DELIVERYDBModelStoreContainer">
+    <EntitySet Name="DeliveryMode" EntityType="DELIVERYDBModel.Store.DeliveryMode" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DeliveryStat" EntityType="DELIVERYDBModel.Store.DeliveryStat" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PackageInformation" EntityType="DELIVERYDBModel.Store.PackageInformation" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="DELIVERYDBModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_PackageInformation_DeliveryMode" Association="DELIVERYDBModel.Store.FK_PackageInformation_DeliveryMode">
+      <End Role="DeliveryMode" EntitySet="DeliveryMode" />
+      <End Role="PackageInformation" EntitySet="PackageInformation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PackageInformation_DeliveryStat" Association="DELIVERYDBModel.Store.FK_PackageInformation_DeliveryStat">
+      <End Role="DeliveryStat" EntitySet="DeliveryStat" />
+      <End Role="PackageInformation" EntitySet="PackageInformation" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DeliveryMode">
+    <Key>
+      <PropertyRef Name="iddelmode" />
+    </Key>
+    <Property Name="iddelmode" Type="int" Nullable="false" />
+    <Property Name="delmode" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DeliveryStat">
+    <Key>
+      <PropertyRef Name="iddeliver" />
+    </Key>
+    <Property Name="iddeliver" Type="int" Nullable="false" />
+    <Property Name="deliver" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PackageInformation">
+    <Key>
+      <PropertyRef Name="packid" />
+    </Key>
+    <Property Name="packid" Type="int" Nullable="false" />
+    <Property Name="sname" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="saddress" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="scontact" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="rname" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="raddress" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="rcontact" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="iddelmode" Type="int" Nullable="false" />
+    <Property Name="iddeliver" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_PackageInformation_DeliveryMode">
+    <End Role="DeliveryMode" Type="DELIVERYDBModel.Store.DeliveryMode" Multiplicity="1" />
+    <End Role="PackageInformation" Type="DELIVERYDBModel.Store.PackageInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeliveryMode">
+        <PropertyRef Name="iddelmode" />
+      </Principal>
+      <Dependent Role="PackageInformation">
+        <PropertyRef Name="iddeliver" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PackageInformation_DeliveryStat">
+    <End Role="DeliveryStat" Type="DELIVERYDBModel.Store.DeliveryStat" Multiplicity="1" />
+    <End Role="PackageInformation" Type="DELIVERYDBModel.Store.PackageInformation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeliveryStat">
+        <PropertyRef Name="iddeliver" />
+      </Principal>
+      <Dependent Role="PackageInformation">
+        <PropertyRef Name="iddeliver" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="DeletePackageInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="packid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="InsertPackageInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="packid" Type="int" Mode="In" />
+    <Parameter Name="sname" Type="varchar" Mode="In" />
+    <Parameter Name="saddress" Type="varchar" Mode="In" />
+    <Parameter Name="scontact" Type="varchar" Mode="In" />
+    <Parameter Name="rname" Type="varchar" Mode="In" />
+    <Parameter Name="raddress" Type="varchar" Mode="In" />
+    <Parameter Name="rcontact" Type="varchar" Mode="In" />
+    <Parameter Name="iddelmode" Type="int" Mode="In" />
+    <Parameter Name="iddeliver" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SearchAllPackageInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SearchPackageInformationByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="packid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SearchPackageInformationByRName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="rname" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SearchPackageInformationBySName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sname" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SearchPackageInformationBySName2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sname" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SearchPackageInformationBySName3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="sname" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="UpdatePackageInformation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="packid" Type="int" Mode="In" />
+    <Parameter Name="sname" Type="varchar" Mode="In" />
+    <Parameter Name="saddress" Type="varchar" Mode="In" />
+    <Parameter Name="scontact" Type="varchar" Mode="In" />
+    <Parameter Name="rname" Type="varchar" Mode="In" />
+    <Parameter Name="raddress" Type="varchar" Mode="In" />
+    <Parameter Name="rcontact" Type="varchar" Mode="In" />
+    <Parameter Name="iddelmode" Type="int" Mode="In" />
+    <Parameter Name="iddeliver" Type="int" Mode="In" />
+  </Function>
+</Schema>

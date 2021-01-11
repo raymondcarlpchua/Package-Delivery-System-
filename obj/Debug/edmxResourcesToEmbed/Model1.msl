@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DELIVERYDBModelStoreContainer" CdmEntityContainer="DELIVERYDBEntities">
+    <EntitySetMapping Name="DeliveryModes">
+      <EntityTypeMapping TypeName="DELIVERYDBModel.DeliveryMode">
+        <MappingFragment StoreEntitySet="DeliveryMode">
+          <ScalarProperty Name="iddelmode" ColumnName="iddelmode" />
+          <ScalarProperty Name="delmode" ColumnName="delmode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DeliveryStats">
+      <EntityTypeMapping TypeName="DELIVERYDBModel.DeliveryStat">
+        <MappingFragment StoreEntitySet="DeliveryStat">
+          <ScalarProperty Name="iddeliver" ColumnName="iddeliver" />
+          <ScalarProperty Name="deliver" ColumnName="deliver" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PackageInformations">
+      <EntityTypeMapping TypeName="DELIVERYDBModel.PackageInformation">
+        <MappingFragment StoreEntitySet="PackageInformation">
+          <ScalarProperty Name="packid" ColumnName="packid" />
+          <ScalarProperty Name="sname" ColumnName="sname" />
+          <ScalarProperty Name="saddress" ColumnName="saddress" />
+          <ScalarProperty Name="scontact" ColumnName="scontact" />
+          <ScalarProperty Name="rname" ColumnName="rname" />
+          <ScalarProperty Name="raddress" ColumnName="raddress" />
+          <ScalarProperty Name="rcontact" ColumnName="rcontact" />
+          <ScalarProperty Name="iddelmode" ColumnName="iddelmode" />
+          <ScalarProperty Name="iddeliver" ColumnName="iddeliver" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DELIVERYDBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="DeletePackageInformation" FunctionName="DELIVERYDBModel.Store.DeletePackageInformation" />
+    <FunctionImportMapping FunctionImportName="InsertPackageInformation" FunctionName="DELIVERYDBModel.Store.InsertPackageInformation" />
+    <FunctionImportMapping FunctionImportName="SearchAllPackageInformation" FunctionName="DELIVERYDBModel.Store.SearchAllPackageInformation">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DELIVERYDBModel.SearchAllPackageInformation_Result">
+          <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+          <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+          <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+          <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+          <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+          <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+          <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+          <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+          <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SearchPackageInformationByID" FunctionName="DELIVERYDBModel.Store.SearchPackageInformationByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DELIVERYDBModel.SearchPackageInformationByID_Result">
+          <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+          <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+          <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+          <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+          <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+          <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+          <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+          <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+          <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SearchPackageInformationByRName" FunctionName="DELIVERYDBModel.Store.SearchPackageInformationByRName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DELIVERYDBModel.SearchPackageInformationByRName_Result">
+          <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+          <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+          <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+          <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+          <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+          <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+          <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+          <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+          <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SearchPackageInformationBySName" FunctionName="DELIVERYDBModel.Store.SearchPackageInformationBySName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DELIVERYDBModel.SearchPackageInformationBySName_Result">
+          <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+          <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+          <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+          <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+          <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+          <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+          <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+          <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+          <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SearchPackageInformationBySName2" FunctionName="DELIVERYDBModel.Store.SearchPackageInformationBySName2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DELIVERYDBModel.SearchPackageInformationBySName2_Result">
+          <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+          <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+          <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+          <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+          <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+          <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+          <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+          <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+          <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SearchPackageInformationBySName3" FunctionName="DELIVERYDBModel.Store.SearchPackageInformationBySName3">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DELIVERYDBModel.SearchPackageInformationBySName3_Result">
+          <ScalarProperty Name="PackageInformation" ColumnName="PackageInformation" />
+          <ScalarProperty Name="SenderName" ColumnName="SenderName" />
+          <ScalarProperty Name="SenderAddress" ColumnName="SenderAddress" />
+          <ScalarProperty Name="SenderContactNo" ColumnName="SenderContactNo" />
+          <ScalarProperty Name="ReceiverName" ColumnName="ReceiverName" />
+          <ScalarProperty Name="ReceiverAddress" ColumnName="ReceiverAddress" />
+          <ScalarProperty Name="ReceiverContactNo" ColumnName="ReceiverContactNo" />
+          <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+          <ScalarProperty Name="ModeOfDelivery" ColumnName="ModeOfDelivery" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DELIVERYDBModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DELIVERYDBModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DELIVERYDBModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DELIVERYDBModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DELIVERYDBModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DELIVERYDBModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DELIVERYDBModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DELIVERYDBModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DELIVERYDBModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="UpdatePackageInformation" FunctionName="DELIVERYDBModel.Store.UpdatePackageInformation" />
+  </EntityContainerMapping>
+</Mapping>
